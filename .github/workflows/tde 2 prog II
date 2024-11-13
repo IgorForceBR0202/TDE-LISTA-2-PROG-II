@@ -1,0 +1,623 @@
+/* 1 -------------------------------------------------------------
+#include <stdio.h>
+
+struct Livro{
+    char titulo[40];
+    char autor[30];
+    int numPaginas;
+};
+typedef struct Livro livro;
+
+void imprimirLivro(livro *livro);
+int main() {
+
+    livro *livros;
+    livro livro;
+
+    printf("Título: ");
+    fgets(livro.titulo, sizeof(livro.titulo), stdin);
+
+    printf("Autor: ");
+    fgets(livro.autor, sizeof(livro.autor), stdin);
+
+    printf("Quantidade de páginas: ");
+    scanf("%d", &livro.numPaginas);
+
+    imprimirLivro(&livro);
+
+
+    return 0;
+}
+void imprimirLivro(livro *livro) {
+    printf("\nInformações do Livro:\n");
+    printf("Título: %s", livro->titulo);
+    printf("Autor: %s", livro->autor);
+    printf("Número de Páginas: %d\n", livro->numPaginas);
+}
+*/
+
+// 2 ------------------------------------------------------------
+/*
+
+#include <stdio.h>
+
+struct Aluno{
+  char nome[30];
+  int matricula;
+  float notas[3];
+};
+typedef struct Aluno aluno;
+
+float calcular(float notas[]);
+int main() {
+    aluno aluno;
+
+    printf("Nome: ");
+    fgets(aluno.nome, sizeof(aluno.nome), stdin);
+
+    printf("Matricula: ");
+    scanf("%d", &aluno.matricula);
+
+    for(int i = 0; i < 3; i++){
+
+        printf("\nDisciplina %d\n", i + 1);
+        printf("Nota: ");
+        scanf("%f", &aluno.notas[i]);
+
+    }
+
+    float medias = calcular(aluno.notas);
+
+    printf("Média das notas: %.2f", medias);
+
+
+    return 0;
+}
+float calcular(float notas[]){
+    float soma = 0;
+    float media = 0;
+
+    for(int i = 0; i < 3; i++){
+        soma = soma + notas[i];
+    }
+    media = soma / 3;
+    return media;
+}
+*/
+
+// 3 --------------------------------------------------
+/*
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+// Definindo a estrutura Data
+struct Data
+{
+    int dia;
+    int mes;
+    int ano;
+};
+typedef struct Data Data;
+
+struct Aluno
+{
+    char nome[30];
+    int matricula;
+    Data nascimento;
+};
+typedef struct Aluno Aluno;
+
+void receber(Aluno *aluno);
+
+int main()
+{
+    Aluno aluno;
+
+    printf("Nome: ");
+    fgets(aluno.nome, sizeof(aluno.nome), stdin);
+    aluno.nome[strcspn(aluno.nome, "\n")] = '\0';
+
+    printf("Matricula: ");
+    scanf("%d", &aluno.matricula);
+
+    printf("\nNascimento aluno\n");
+    printf("Dia: ");
+    scanf("%d", &aluno.nascimento.dia);
+
+    printf("Mes: ");
+    scanf("%d", &aluno.nascimento.mes);
+
+    printf("Ano: ");
+    scanf("%d", &aluno.nascimento.ano);
+
+    receber(&aluno);
+
+    return 0;
+}
+
+void receber(Aluno *aluno)
+{
+    printf("\nInformações do aluno:\n");
+    printf("Nome: %s\n", aluno->nome);
+    printf("Matricula: %d\n", aluno->matricula);
+    printf("Data de Nascimento: %02d/%02d/%d\n", aluno->nascimento.dia, aluno->nascimento.mes, aluno->nascimento.ano);
+}
+*/
+
+// 4 --------------------------------------------------------------------------------------------------------------------
+
+// fazer a 4 ainda
+
+// 5 terminar
+/*
+
+#include <stdio.h>
+#include <string.h>
+
+struct ContaBancaria
+{
+    int conta;
+    char titular;
+    float saldo;
+};
+typedef struct ContaBancaria conta;
+
+int main()
+{
+
+    conta conta;
+
+    printf("\nDados\n");
+
+    printf("titular: ");
+    fgets(conta.titular, sizeof(conta.titular), stdin);
+
+    printf("Numero conta: ");
+    scanf("%d", &conta.conta);
+
+    printf("Saldo disponível: ");
+    scanf("%f", &conta.saldo);
+
+    return 0;
+}
+
+*/
+
+// 6 ---------------------------------------------------------
+/*
+
+#include <stdio.h>
+#include <string.h>
+
+struct Carro
+{
+    char marca[40];
+    char modelo[40];
+    int anoFabrica;
+};
+typedef struct Carro carro;
+
+int main()
+{
+    carro carros[3];
+
+    printf("\nEscreva as informacoes dos carros\n");
+
+    for (int i = 0; i < 3; i++)
+    {
+        printf("Marca: ");
+        fgets(carros[i].marca, sizeof(carros[i].marca), stdin);
+
+        printf("Modelo: ");
+        fgets(carros[i].modelo, sizeof(carros[i].modelo), stdin);
+
+        printf("Ano de fabrica: ");
+        scanf("%d", &carros[i].anoFabrica);
+
+        getchar();
+    }
+
+    for (int i = 0; i < 3; i++)
+    {
+
+        printf("Marca: %s\n", carros[i].marca);
+
+        printf("Modelo: %s\n", carros[i].modelo);
+
+        printf("Ano de fabrica: %d\n", carros[i].anoFabrica);
+    }
+
+    return 0;
+}
+*/
+
+// 7 ---------------------------------------------------------------------
+/*
+#include <stdio.h>
+#include <string.h>
+#include ,stdlib.h>
+
+struct Funcionario
+{
+    char nome[40];
+    float salario;
+};
+typedef struct Funcionario func;
+
+int main()
+{
+    int qtd;
+    float media = 0;
+    float soma = 0;
+
+    printf("Digite o numero de funcionarios: ");
+    scanf("%d", &qtd);
+
+    func *funcs = (func *)malloc(qtd * sizeof(func));
+
+    if (funcs == NULL)
+    {
+        printf("Erro ao alocar memoria");
+        return 1;
+    }
+
+    for (int i = 0; i < qtd; i++)
+    {
+        getchar();
+        printf("Nome: ");
+        fgets(funcs[i].nome, sizeof(funcs[i].nome), stdin);
+        printf("Salario: ");
+        scanf("%f", &funcs[i].salario);
+
+        soma = soma + funcs[i].salario;
+    }
+    media = soma / qtd;
+
+    printf("Media salarial dos funcionarios: %.2f", media);
+
+    free(funcs);
+
+    return 0;
+}
+*/
+
+// 8 -------------------------------------------------------------------
+/*
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct Cliente
+{
+    char nome[30];
+    int idade;
+};
+typedef struct Cliente cli;
+
+int main()
+{
+    int qtd = 0;
+    int velho = 0;
+    int indice_mais_velho = 0;
+
+    printf("Quantidade de clientes ");
+    scanf("%d", &qtd);
+
+    cli *clientes = (cli *)malloc(qtd * sizeof(cli));
+
+    if (clientes == NULL)
+    {
+        printf("Erro");
+        return 1;
+    }
+
+    for (int i = 0; i < qtd; i++)
+    {
+        getchar();
+        printf("Nome: ");
+        fgets(clientes[i].nome, sizeof(clientes[i].nome), stdin);
+        printf("idade: ");
+        scanf("%d", &clientes[i].idade);
+
+        if (clientes[i].idade > velho)
+        {
+            velho = clientes[i].idade;
+            indice_mais_velho = i;
+        }
+    }
+
+    if (indice_mais_velho != 0)
+    {
+        printf("\nO cliente mais velho e:\n");
+        printf("Nome: %s\n", clientes[indice_mais_velho].nome);
+        printf("Idade: %d", clientes[indice_mais_velho].idade);
+    }
+
+    free(clientes);
+
+    return 0;
+}
+*/
+
+// 9 -----------------------------------------------------------------------
+/*
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct Produto
+{
+    char nome[30];
+    float preco;
+    int qtd;
+};
+typedef struct Produto produto;
+
+int main()
+{
+    int num = 0;
+    float total = 0;
+    float soma = 0;
+
+    printf("Quantidade de produtos: ");
+    scanf("%d", &num);
+
+    produto *produtos = (produto *)malloc(num * sizeof(produtos));
+
+    if (produtos == NULL)
+    {
+        printf("Erro na alocacao");
+        return 1;
+    }
+
+    printf("\nPreenchemento dos produtos:\n");
+
+    for (int i = 0; i < num; i++)
+    {
+        getchar();
+
+        printf("Nome: ");
+        fgets(produtos[i].nome, sizeof(produtos[i].nome), stdin);
+        printf("Preco: ");
+        scanf("%f", &produtos[i].preco);
+        printf("Quantidade: ");
+        scanf("%d", &produtos[i].qtd);
+
+        soma = soma + produtos[i].preco * produtos[i].qtd;
+    }
+
+    total = soma;
+
+    printf("total dos produtos: %.2f", total);
+
+    free(produtos);
+
+    return 0;
+}
+*/
+
+// 10 --------------------------------------------------------------------------
+/*
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct produto
+{
+    int codigo;
+    char descricao[30];
+    float preco;
+};
+typedef struct produto produto;
+
+int main()
+{
+
+    float percent = 0;
+
+    produto *produtos = (produto *)malloc(10 * sizeof(produto));
+    if (produtos == NULL)
+    {
+        printf("Erro");
+        return 1;
+    }
+
+    printf("Digite o aumento de preco: ");
+    scanf("%f", &percent);
+
+    printf("\nProdutos:\n");
+    for (int i = 0; i < 10; i++)
+    {
+        getchar();
+        printf("Codigo: ");
+        scanf("%d", &produtos[i].codigo);
+        getchar();
+        printf("Descricao: ");
+        fgets(produtos[i].descricao, sizeof(produtos[i].descricao), stdin);
+        printf("Preco: ");
+        scanf("%f", &produtos[i].preco);
+        getchar();
+    }
+
+    printf("\nProdutos Cadastrados:\n");
+    for (int i = 0; i < 10; i++)
+    {
+        printf("\nProduto %d:\n", i + 1);
+        printf("Codigo: %d\n", produtos[i].codigo);
+        printf("Descricao: %s\n", produtos[i].descricao);
+        printf("Preco: %.2f\n", produtos[i].preco);
+    }
+
+    for (int i = 0; i < 10; i++)
+    {
+        produtos[i].preco += produtos[i].preco * (percent / 100);
+    }
+
+    printf("\nProdutos apos o aumento de %.2f%%:\n", percent);
+    for (int i = 0; i < 10; i++)
+    {
+        printf("\nProduto %d:\n", i + 1);
+        printf("Codigo: %d\n", produtos[i].codigo);
+        printf("Descricao: %s\n", produtos[i].descricao);
+        printf("Preco atualizado: %.2f\n", produtos[i].preco);
+    }
+
+    free(produtos);
+    return 0;
+}
+*/
+
+// 11 -----------------------------------------------------------------------
+/*
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct Habitantes
+{
+    char sexo;
+    char olhos[20];
+    char cabelos[20];
+    int idade;
+};
+typedef struct Habitantes p;
+
+int main()
+{
+
+    int qtd = 0;
+    float idadeMedia = 0;
+    int novinho = 0;
+    int soma = 0;
+    int qtdMulher = 0;
+    int loirosOlhosAzuis = 0;
+    float percLoirosOlhosAzuis = 0;
+
+    printf("Quantidade de habitantes: ");
+    scanf("%d", &qtd);
+
+    p *pessoas = (p *)malloc(qtd * sizeof(p));
+    if (pessoas == NULL)
+    {
+        printf("Erro na alocacao\n");
+        return 1;
+    }
+
+    printf("\nInfo dos habitantes\n");
+    for (int i = 0; i < qtd; i++)
+    {
+        getchar();
+        printf("Sexo (M/F): ");
+        scanf(" %c", &pessoas[i].sexo);
+        getchar();
+        printf("Cor dos olhos (azul/verde/castanho): ");
+        fgets(pessoas[i].olhos, sizeof(pessoas[i].olhos), stdin);
+        pessoas[i].olhos[strcspn(pessoas[i].olhos, "\n")] = '\0';
+        printf("Cor do cabelo (louro/castanho/preto/ruivo): ");
+        fgets(pessoas[i].cabelos, sizeof(pessoas[i].cabelos), stdin);
+        pessoas[i].cabelos[strcspn(pessoas[i].cabelos, "\n")] = '\0';
+        printf("Idade: ");
+        scanf("%d", &pessoas[i].idade);
+
+        if ((pessoas[i].sexo == 'm' || pessoas[i].sexo == 'M') && pessoas[i].idade < novinho)
+        {
+            novinho = pessoas[i].idade;
+        }
+
+        if (pessoas[i].sexo == 'f' || pessoas[i].sexo == 'F')
+        {
+            soma += pessoas[i].idade;
+            qtdMulher++;
+        }
+
+        if (strcmp(pessoas[i].cabelos, "louro") == 0 && strcmp(pessoas[i].olhos, "azul") == 0)
+        {
+            loirosOlhosAzuis++;
+        }
+    }
+
+    if (qtdMulher > 0)
+    {
+        idadeMedia = (float)soma / qtdMulher;
+    }
+
+    percLoirosOlhosAzuis = ((float)loirosOlhosAzuis / qtd) * 100;
+
+    if (novinho != 0)
+    {
+        printf("a) Homem mais novo: %d anos\n", novinho);
+    }
+    else
+    {
+        printf("a) Nenhum homem foi entrevistado.\n");
+    }
+
+    printf("b) Número de pessoas entrevistadas: %d\n", qtd);
+    printf("c) Idade média das mulheres: %.2f\n", idadeMedia);
+    printf("d) Percentagem de habitantes com cabelos louros e olhos azuis: %.2f%%\n", percLoirosOlhosAzuis);
+
+    free(pessoas);
+    return 0;
+}
+*/
+
+// 12 ---------------------------------------------------------------
+/*
+#include <stdio.h>
+#include <stdlib.h>
+
+void copiarLinhasImpares(char *arqEntrada, char *arqSaida);
+
+int main()
+{
+    char arqEntrada[200];
+    char arqSaida[200];
+
+    printf("Digite o nome do arquivo de entrada: ");
+    scanf("%s", arqEntrada);
+
+    printf("Digite o nome do arquivo de saída: ");
+    scanf("%s", arqSaida);
+
+    copiarLinhasImpares(arqEntrada, arqSaida);
+
+    printf("Linhas ímpares copiadas com sucesso para o arquivo de saída.\n");
+
+    return 0;
+}
+
+void copiarLinhasImpares(char *arqEntrada, char *arqSaida)
+{
+    char linha[200];
+    int numLinha = 1; // Iniciando com 1 para contar a primeira linha como ímpar
+
+    FILE *entrada = fopen(arqEntrada, "r");
+    FILE *saida = fopen(arqSaida, "w");
+
+    if (entrada == NULL || saida == NULL)
+    {
+        printf("Erro ao abrir os arquivos.\n");
+        return;
+    }
+
+    while (fgets(linha, sizeof(linha), entrada) != NULL)
+    {
+        if (numLinha % 2 != 0)
+        { // Condição para linhas ímpares
+            fputs(linha, saida);
+        }
+        numLinha++;
+    }
+
+    fclose(entrada);
+    fclose(saida);
+}
+*/
+
+// 13 ---------------------------------------------------------------------------
