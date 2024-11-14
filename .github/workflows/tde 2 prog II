@@ -621,3 +621,229 @@ void copiarLinhasImpares(char *arqEntrada, char *arqSaida)
 */
 
 // 13 ---------------------------------------------------------------------------
+/*
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void copiar(char *entrada, char *saida);
+int main()
+{
+
+    char entrada[30];
+    char saida[30];
+
+    printf("Nome do arquivo de entrada: ");
+    fgets(entrada, sizeof(entrada), stdin);
+    entrada[strcspn(entrada, "\n")] = '\0';
+
+    printf("Nome do arquivo de saída: ");
+    fgets(saida, sizeof(saida), stdin);
+    saida[strcspn(saida, "\n")] = '\0';
+
+    copiar(entrada, saida);
+
+    return 0;
+}
+void copiar(char *entrada, char *saida)
+{
+
+    int ch;
+
+    FILE *arqEntrada = fopen(entrada, "r");
+    FILE *arqSaida = fopen(saida, "w");
+
+    if (arqEntrada == NULL || arqSaida == NULL)
+    {
+        printf("Erro");
+        return;
+    }
+
+    while ((ch = fgetc(arqEntrada)) != EOF)
+    {
+        fputc(ch, arqSaida);
+    }
+
+    fclose(arqEntrada);
+    fclose(arqSaida);
+}
+*/
+
+// 14 --------------------------------------------------------------
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void ler(char *arquivo);
+
+int main()
+{
+    char arquivo[30];
+
+    printf("Nome do arquivo: ");
+    fgets(arquivo, sizeof(arquivo), stdin);
+    arquivo[strcspn(arquivo, "\n")] = '\0';
+
+    ler(arquivo);
+
+    return 0;
+}
+
+void ler(char *arquivo)
+{
+    int numero, qtd = 0;
+    float soma = 0, media = 0;
+
+    FILE *arqEntrada = fopen(arquivo, "r");
+
+    if (arqEntrada == NULL)
+    {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
+    while (fscanf(arqEntrada, "%d", &numero) == 1)
+    {
+        soma += numero;
+        qtd++;
+    }
+
+    fclose(arqEntrada);
+
+    if (qtd > 0)
+    {
+        media = soma / qtd;
+        printf("A média dos números é: %.2f\n", media);
+    }
+    else
+    {
+        printf("O arquivo está vazio ou não contém números válidos.\n");
+    }
+}
+*/
+
+// 15 e 16  ----------------------------------------------------------------------- OK
+/*
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Aluno
+{
+    char nome[30];
+    int idade;
+    int matricula;
+    float media;
+};
+typedef struct Aluno aluno;
+
+void cadastrar(char *arquivo, aluno *aluno);
+void buscarnome(char *arquivo);
+
+int main()
+{
+    aluno aluno;
+    char arquivo[30];
+    int opcao = 0;
+
+    printf("Digite o nome do arquivo: ");
+    fgets(arquivo, sizeof(arquivo), stdin);
+
+    printf("\nCadastro do aluno\n");
+    printf("Escolha uma opção:\n");
+    printf("1 - Cadastrar aluno\n");
+    printf("2 - Buscar aluno por nome\n");
+    scanf("%d", &opcao);
+    getchar();
+
+    if (opcao == 1) {
+        printf("\nCadastro do aluno\n");
+        printf("Nome: ");
+        fgets(aluno.nome, sizeof(aluno.nome), stdin);
+        aluno.nome[strcspn(aluno.nome, "\n")] = '\0';
+        printf("Idade: ");
+        scanf("%d", &aluno.idade);
+        printf("Matricula: ");
+        scanf("%d", &aluno.matricula);
+        printf("Media: ");
+        scanf("%f", &aluno.media);
+
+        cadastrar(arquivo, &aluno);
+
+    } else if (opcao == 2) {
+        buscarnome(arquivo);
+    } else {
+        printf("Opção inválida.\n");
+    }
+
+    return 0;
+}
+void cadastrar(char *arquivo, aluno *aluno)
+{
+
+    FILE *arq = fopen(arquivo, "a");
+    if (arq == NULL)
+    {
+        printf("Erro ao abrir o aquivo.");
+        return;
+    }
+
+    fprintf(arq, "%s\n", aluno->nome);
+    fprintf(arq, "%d\n", aluno->idade);
+    fprintf(arq, "%d\n", aluno->matricula);
+    fprintf(arq, "%.2f\n", aluno->media);
+
+    fclose(arq);
+
+    printf("Aluno cadastrado com sucesso.\n");
+}
+
+void buscarnome(char *arquivo){
+
+    char nomebusca[30];
+    int encontrado;
+    aluno aluno;
+
+    FILE *arq = fopen(arquivo, "r");
+    if(arq == NULL){
+        printf("Erro");
+        return;
+    }
+
+    printf("Digite o nome de busca: ");
+    fgets(nomebusca, sizeof(nomebusca), stdin);
+    nomebusca[strcspn(nomebusca, "\n")] = '\0';
+
+    while(fgets(aluno.nome, sizeof(aluno.nome), arq) != NULL){
+        aluno.nome[strcspn(aluno.nome, "\n")] = '\0';
+        fscanf(arq, "%d", &aluno.idade);
+        fscanf(arq, "%d", &aluno.matricula);
+        fscanf(arq, "%f", &aluno.media);
+        fgetc(arq);
+
+        if (strcmp(aluno.nome, nomebusca) == 0)
+        {
+            printf("\nAluno encontrado:\n");
+            printf("Nome: %s\n", aluno.nome);
+            printf("Idade: %d\n", aluno.idade);
+            printf("Matricula: %d\n", aluno.matricula);
+            printf("Media: %.2f\n", aluno.media);
+            encontrado = 1;
+            break;
+        }
+    }
+
+     if (!encontrado)
+    {
+        printf("Aluno não encontrado.\n");
+    }
+
+    fclose(arq);
+
+}
+*/
+
+// 17 ----------------------------------------------
