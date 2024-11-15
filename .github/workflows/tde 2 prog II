@@ -846,4 +846,136 @@ void buscarnome(char *arquivo){
 }
 */
 
-// 17 ----------------------------------------------
+// 17 ------------------------------------------------------------ ok
+/*
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Colegio
+{
+    char nome[40];
+    int fundacao;
+    char cidade[40];
+};
+typedef struct Colegio colegio;
+
+int main()
+{
+
+    colegio colegio;
+    char opcao;
+
+    FILE *arquivo = fopen("ensino.txt", "a");
+
+    if (arquivo == NULL)
+    {
+        printf("Erro ao abrir o arquivo.");
+        return 1;
+    }
+
+    do
+    {
+        printf("Nome da escola: ");
+        fgets(colegio.nome, sizeof(colegio.nome), stdin);
+
+        printf("Ano de fundacao: ");
+        scanf("%d", &colegio.fundacao);
+        getchar();
+
+        printf("Cidade: ");
+        fgets(colegio.cidade, sizeof(colegio.cidade), stdin);
+
+        printf("Deseja continuar cadastrando colegios? (s/n): ");
+        scanf(" %c", &opcao);
+        getchar();
+
+        fprintf(arquivo, "Nome: %s\n", colegio.nome);
+        fprintf(arquivo, "Cidade: %s\n", colegio.cidade);
+        fprintf(arquivo, "Ano de Fundacao: %d\n", colegio.fundacao);
+        fprintf(arquivo, "--------------------------\n");
+
+    } while (opcao != 'n');
+
+    fclose(arquivo);
+
+    printf("Cadastro realizado com sucesso");
+
+    return 0;
+}
+*/
+
+// 18 -------------------------------------------------------------------------
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Pessoa
+{
+    char nome[40];
+    int idade;
+    char sexo;
+};
+typedef struct Pessoa pessoa;
+
+int main()
+{
+    pessoa p;
+    char opcao;
+
+    FILE *arquivo = fopen("pessoas.txt", "a");
+
+    if (arquivo == NULL)
+    {
+        printf("Erro ao abrir o arquivo.");
+        return 1;
+    }
+
+    do
+    {
+        printf("Nome: ");
+        fgets(p.nome, sizeof(p.nome), stdin);
+
+        printf("Idade: ");
+        scanf("%d", &p.idade);
+        getchar();
+
+        printf("Sexo (m/f): ");
+        scanf(" %c", &p.sexo);
+        getchar();
+
+        printf("Deseja continuar cadastrando pessoas? (s/n): ");
+        scanf(" %c", &opcao);
+        getchar();
+
+        fprintf(arquivo, "Nome: %s\n", p.nome);
+        fprintf(arquivo, "Idade: %d\n", p.idade);
+        fprintf(arquivo, "Sexo: %c\n", p.sexo);
+        fprintf(arquivo, "--------------------------------\n");
+
+    } while (opcao != 'n');
+
+    fclose(arquivo);
+
+    printf("Cadastro realizado com sucesso");
+
+
+
+    return 0;
+}
+*/
+
+// 19 ----------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+
+    return 0;
+}
+
