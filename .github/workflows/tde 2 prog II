@@ -968,6 +968,61 @@ int main()
 */
 
 // 19 ----------------------------------------------------------------
+/*
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int contar(char *arquivo);
+
+int main()
+{
+    char arquivo[30];
+
+    printf("Digite o nome do arquivo: ");
+    fgets(arquivo, sizeof(arquivo), stdin);
+    arquivo[strcspn(arquivo, "\n")] = '\0';
+
+    int quantidade = contar(arquivo);
+
+    printf("O arquivo '%s' contém %d ocorrências da letra 'a'.\n", arquivo, quantidade);
+
+
+    return 0;
+}
+
+int contar(char *arquivo)
+{
+    int contador = 0;
+    char caractere;
+
+    FILE *arq = fopen(arquivo, "a");
+    if (arq == NULL) {
+        return 1;
+    }
+
+    fclose(arq);
+
+
+    arq = fopen(arquivo, "r");
+    if (arq == NULL) {
+        return 1;
+    }
+
+    while ((caractere = fgetc(arq)) != EOF) {
+        if (caractere == 'a' || caractere == 'A') {
+            contador++;
+        }
+    }
+
+    fclose(arq);
+    return contador;
+}
+*/
+
+// 20 --------------------------------------------------------------------------
+/*
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -975,7 +1030,38 @@ int main()
 
 int main()
 {
+    int contador = 0;
+    char palavra[100];
+
+    FILE *arq = fopen("registro.txt", "r");
+    if (arq == NULL)
+    {
+        return 1;
+    }
+
+    while (fscanf(arq, "%s", palavra) == 1)
+    {
+
+        if (strcmp(palavra, "de") == 0 || strcmp(palavra, "DE") == 0)
+        {
+            contador++;
+        }
+    }
+
+    fclose(arq);
+
+    printf("O arquivo contém %d ocorrências da palavra 'de'.\n", contador);
 
     return 0;
 }
+*/
 
+// 21 ------------------------------------------------------------------
+
+// 22 
+
+// 23
+
+// 24
+
+// 25
